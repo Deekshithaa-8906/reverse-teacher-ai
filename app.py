@@ -33,12 +33,13 @@ if st.button("Analyze My Understanding"):
     else:
         try:
             # Configure Gemini
-            genai.configure(api_key=api_key)
+            # Configure Gemini
+genai.configure(api_key=api_key)
 
-            # ✅ CORRECT MODEL (WORKING)
-            model = genai.GenerativeModel("models/gemini-1.5-flash")
+# ✅ WORKING MODEL
+model = genai.GenerativeModel("gemini-pro")
 
-            prompt = f"""
+prompt = f"""
 You are an expert teacher.
 
 A student explained a concept as follows:
@@ -53,12 +54,4 @@ Tasks:
 Be clear, supportive, and educational.
 """
 
-            response = model.generate_content(prompt)
-
-            st.subheader("🧠 Analysis Result")
-            st.write(response.text)
-
-        except Exception as e:
-            st.error("Something went wrong while calling Gemini API.")
-            st.exception(e)
-
+response = model.generate_content(prompt)
